@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="examples.css">
+    <script src="Tanglekit/js/jquery-2.1.1.js"></script>
+    <script src="Tanglekit/js/Tangle.js"></script>
+    <script src="Tanglekit/js/Plot.js"></script>
+    <script src="Tanglekit/js/Chart.min.js"></script>
+    <script src="Tanglekit/js/jquery.flot.js"></script>
+    <!-- TangleKit -->
+    <link rel="stylesheet" href="TangleKit/TangleKit.css" type="text/css">
+    <script type="text/javascript" src="TangleKit/mootools.js"></script>
+    <script type="text/javascript" src="TangleKit/sprintf.js"></script>
+    <script type="text/javascript" src="TangleKit/BVTouchable.js"></script>
+    <script type="text/javascript" src="TangleKit/TangleKit.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            var model = {
+                initialize: function () {
+                    this.time = 10;
+                    this.step = 1;
+                     
+                },
+                update: function () {
+                    this.points2 = [];
+                    for (var t = 0; t < this.time; t += this.step) {
+
+                    }
+                    
+                    $("#result").html(`Temperatura final ${this.xx} grados, error ${Math.abs(79 - this.xx)}`);
+                    var options = {
+                        color: "#ffffff",
+                        series: {
+                            lines: { show: true },
+                            points: { show: false }
+                        },
+                        legend: {
+                            show: true,
+                            position: "ne"
+                        }
+                    };
+                    $.plot("#canvas1", [ { data: this.points2, label: "CON LA SIMULACION" }], options);
+
+                }
+            };
+            var elemento = document.getElementById("visual");
+            new Tangle(elemento, model)
+        });
+    </script>
+</head>
+
+<body>
+    <div id="visual">
+        Time = <span data-var="time" class="TKAdjustableNumber" data-min="0" data-max="100" data-step="1"></span>
+    </div>
+    <div id="canvas1"></div>
+    <div id="result">
+
+    </div>
+</body>
+
+</html>
